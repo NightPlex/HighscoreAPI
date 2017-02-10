@@ -31,15 +31,23 @@ Moved client to Spring framework and parse with thymeleaf
 
 ## Brief API Documentation
 
-**GET** - */player/register*
-Register new account to database, receive unique playerId in return <br/>
+**POST** - */player/register*
+<br/>
+Register new account to database, receive unique playerId in return
+<br/>
 Example of usage: 
 ```
-http://example.com/player/register/iamname
+http://example.com/player/register
+
+JSON Content: 
+
+
 ```
 
-**GET** - */player/register*
+**POST** - */player/register*
+<br/>
 Register new account to database, receive unique playerId in return
+<br/>
 Example of usage: 
 ```
 http://example.com/player/register/iamname
