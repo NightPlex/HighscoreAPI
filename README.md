@@ -4,13 +4,7 @@ Server side and REST API written with Spring Framework in Java. Client is writte
 
 ## Getting Started
 
-Step 1: Download as zip or clone it to your computer.
 
-Step 2: Import in eclipse as Java project.
-
-Step 3: Test if it works by running it.
-
-Step 4: It is open-source do you are welcome to continue development.
 
 ### Prerequisites
 
@@ -26,7 +20,6 @@ Go to IDE, export as Jar.
 
 Cannot write external client when on localhost:8080
 Can be bypassed with proxies or disabling security.
-
 Error: 
 ```
 XMLHttpRequest cannot load http://localhost:8080/topscore/angrybirds/5. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.
@@ -35,6 +28,22 @@ Moved client to Spring framework and parse with thymeleaf
 
 
 
+
+## Brief API Documentation
+
+**GET** - */player/register*
+Register new account to database, receive unique playerId in return
+Example of usage: 
+```
+http://example.com/player/register/iamname
+```
+
+**GET** - */player/register*
+Register new account to database, receive unique playerId in return
+Example of usage: 
+```
+http://example.com/player/register/iamname
+```
 
 
 
