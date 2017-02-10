@@ -8,7 +8,7 @@ Server side and REST API written with Spring Framework in Java. Client is writte
 
 ### Prerequisites
 
-Preferable basic Java knowledge
+Preferable basic Java knowledge |
 Well commented
 
 
