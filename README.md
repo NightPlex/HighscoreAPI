@@ -32,7 +32,7 @@ Moved client to Spring framework and parse with thymeleaf
 ## Brief API Documentation
 
 **GET** - */player/register*
-Register new account to database, receive unique playerId in return::
+Register new account to database, receive unique playerId in return <br/>
 Example of usage: 
 ```
 http://example.com/player/register/iamname
