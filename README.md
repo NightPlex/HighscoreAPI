@@ -5,32 +5,44 @@ Server side and REST API written with Spring Framework in Java.
 Client is written in javascript using JSON, AJAX and JQuery
 <br/>
 Anyone can register with the system by submitting a player name and in return they receive a unique player id. Anyone can submit a score by sending a valid player id, title of the game and their score. All the scores are stored in the database. Top scores can be requested by providing the title of the game. All scores submitted by a player can be requested by providing a valid player id. Scores can be updated or deleted by providing game title and player id. Players along with all their scores can be deleted with player id.
+<br/>
+
 
 
 ## Getting Started
-Built in eclipse using Maven as build manager. Database
+1.Download as a zip
+2.Extract and import to any IDE with Maven support.
+3.Run tests as JUnit test
+4.Run application as Java Application
+5.Go to localhost:8080 to test if it works
+6.You can use postman for API calls
 
 
 
 ### Prerequisites
 
-Preferable basic Java knowledge |
-Well commented
-
+Required any IDE that support Maven import.
 
 ## Deployment
 
-Go to IDE, export as Jar.
-
+After tests and localhost test export the project as Jar.
+<br/>
+Publish the Jar in any platforum that support Java.
+<br/>
+For example: Cloud Foundry
 ## Known issues
 
 Cannot write external client when on localhost:8080
+<br/>
 Can be bypassed with proxies or disabling security.
+<br/>
 Error: 
 ```
 XMLHttpRequest cannot load http://localhost:8080/topscore/angrybirds/5. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'null' is therefore not allowed access.
 ```
 Moved client to Spring framework and parse with thymeleaf
+</br>
+No other issue at this moment
 
 
 ## Running the tests
