@@ -1,8 +1,14 @@
 # Highscore API
 
-Server side and REST API written with Spring Framework in Java. Client is written in javascript using JSON, AJAX and JQuery
+Server side and REST API written with Spring Framework in Java.
+<br/>
+Client is written in javascript using JSON, AJAX and JQuery
+<br/>
+Anyone can register with the system by submitting a player name and in return they receive a unique player id. Anyone can submit a score by sending a valid player id, title of the game and their score. All the scores are stored in the database. Top scores can be requested by providing the title of the game. All scores submitted by a player can be requested by providing a valid player id. Scores can be updated or deleted by providing game title and player id. Players along with all their scores can be deleted with player id.
+
 
 ## Getting Started
+Built in eclipse using Maven as build manager. Database
 
 
 
@@ -156,6 +162,16 @@ JSON RETURN Content:
 
 ```
 
+**DELETE** - */game/{gameTitle}/{playerId}*
+<br/>
+Deletes Game score by player id and game title
+<br/>
+Example of usage: 
+```
+http://example.com/game/GAME-TITLE/YOUR-PLAYER-ID
+
+```
+
 
 ## Authors
 
@@ -164,4 +180,4 @@ JSON RETURN Content:
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the GPL License.
