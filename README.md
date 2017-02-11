@@ -40,7 +40,9 @@ Example of usage:
 http://example.com/player/register
 
 JSON Content: 
-
+{
+  "playerName": "YOUR-PLAYER-NAME-HERE"
+}
 
 ```
 
@@ -50,8 +52,12 @@ Register new account to database, receive unique playerId in return
 <br/>
 Example of usage: 
 ```
-http://example.com/player/register/iamname
-```
+http://example.com/player/register
+
+JSON Content: 
+{
+  "playerName": "YOUR-PLAYER-NAME-HERE"
+}
 
 
 
