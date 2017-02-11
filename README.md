@@ -42,32 +42,23 @@ JUnit testing. Run as JUnit to test.
 #### GameControllerRestTests
 Test for: delete, update, submit and get game object.
 <br/>
-Testing with mockMvc
-```
-Example:
-@Test
-	public void showTopScore() throws Exception {
-		MvcResult result = mockMvc.perform(post("/player/register").content(this.json(new Player("steven1"))).contentType(contentType)).andReturn();
-		//format to proper string
-		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
-		String gameTitle = "angrybirds";
-		//set json
-		String GameJson = json(new GameTemplate(gameTitle, 500, UUID.fromString(playerId)));
-		//submit score
-		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(GameJson))
-				.andExpect(status().isCreated());
-		
-		// by game title
-		this.mockMvc.perform(get("/game/topscore/"+ gameTitle +"/10")).andExpect(status().isOk());
-		
-		//by name
-		this.mockMvc.perform(get("/game/topscore/" + playerRepository.findByPlayerId(UUID.fromString(playerId)).getplayerName())).andExpect(status().isOk());
-		
-		
-		
-	}
+The reason for test is to get correct Http status codes and data validation
 
-```
+#### PlayerControllerRestTests
+Test for: delete, submit and get player object.
+<br/>
+The reason for test is to get correct Http status codes and data validation
+
+#### HighscoresApplicationTests
+Test for: load controllers
+<br/>
+The reason for test is to check if controllers are being loaded
+
+#### RepositoryTest
+Test for: repository save, delete and update
+<br/>
+The reason for test is to ensure proper hibernation
+
 
 
 
