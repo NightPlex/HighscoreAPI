@@ -39,26 +39,122 @@ Example of usage:
 ```
 http://example.com/player/register
 
-JSON Content: 
+JSON Body Content: 
 {
   "playerName": "YOUR-PLAYER-NAME-HERE"
 }
 
 ```
 
-**POST** - */player/register*
+**GET** - */player/{playerId}*
 <br/>
-Register new account to database, receive unique playerId in return
+Returns all scores submitted by player(game title, score and Player object with name
 <br/>
 Example of usage: 
 ```
-http://example.com/player/register
+http://example.com/player/YOUR-PLAYER-ID
 
-JSON Content: 
+JSON RETURN CONTENT:
+[
 {
-  "playerName": "YOUR-PLAYER-NAME-HERE"
+  "player": {
+    "playerName": "YOUR-PLAYER-NAME"
+  },
+  "gameTitle": "GAME-TITLE",
+  "score": 8888
+}
+]
+```
+
+**DELETE** - */player/delete/{playerId}*
+<br/>
+Deletes Player with all its scores.
+<br/>
+Example of usage: 
+```
+http://example.com/player/delete/YOUR-PLAYER-ID
+
+```
+
+**POST** - */game/submitscore*
+<br/>
+Save new score to database
+<br/>
+Example of usage: 
+```
+http://example.com/game/submitscore
+
+JSON Body Content: 
+{
+  "gameTitle": "GAME-TITLE",
+  "score": 8888,
+  "playerId": "YOUR-PLAYER-ID"
+  
 }
 
+```
+
+**PUT** - */game/updatescore*
+<br/>
+Update existing score in database
+<br/>
+Example of usage: 
+```
+http://example.com/game/updatescore
+
+JSON Body Content: 
+{
+  "gameTitle": "GAME-TITLE",
+  "score": 8888,
+  "playerId": "YOUR-PLAYER-ID"
+  
+}
+
+```
+
+**GET** - */game/topscore/{playerName}*
+<br/>
+Return all scores submitted by player
+<br/>
+Example of usage: 
+```
+http://example.com/game/topscore/PLAYER-NAME
+
+JSON RETURN Content: 
+[
+{
+  "player": {
+    "playerName": "YOUR-PLAYER-NAME"
+  },
+  "gameTitle": "GAME-TITLE",
+  "score": 8888
+}
+]
+
+```
+
+**GET** - */game/topscore/{gameTitle}/{amount}*
+<br/>
+Return all scores for certain game and limit it with amount
+<br/>
+Example of usage: 
+```
+http://example.com/game/topscore/GAME-TITLE/10
+
+Will list top 10 games based of score
+
+JSON RETURN Content: 
+[
+{
+  "player": {
+    "playerName": "YOUR-PLAYER-NAME"
+  },
+  "gameTitle": "GAME-TITLE",
+  "score": 8888
+}
+]
+
+```
 
 
 ## Authors
