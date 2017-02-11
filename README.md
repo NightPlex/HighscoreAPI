@@ -33,6 +33,18 @@ XMLHttpRequest cannot load http://localhost:8080/topscore/angrybirds/5. No 'Acce
 Moved client to Spring framework and parse with thymeleaf
 
 
+## Running the tests
+
+JUnit testing. Run as JUnit to test.
+
+### Break down into end to end tests
+
+#### GameControllerRestTests
+
+```
+Give an example
+```
+
 
 
 ## Brief API Documentation
