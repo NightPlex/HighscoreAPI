@@ -11,10 +11,15 @@ Anyone can register with the system by submitting a player name and in return th
 
 ## Getting Started
 1.Download as a zip
+<br/>
 2.Extract and import to any IDE with Maven support.
+<br/>
 3.Run tests as JUnit test
+<br/>
 4.Run application as Java Application
+<br/>
 5.Go to localhost:8080 to test if it works
+<br/>
 6.You can use postman for API calls
 
 
