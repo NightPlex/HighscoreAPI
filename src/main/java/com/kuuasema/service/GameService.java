@@ -1,7 +1,6 @@
 package com.kuuasema.service;
 
 import java.util.Collection;
-import java.util.UUID;
 
 import com.kuuasema.model.Game;
 import com.kuuasema.model.Player;

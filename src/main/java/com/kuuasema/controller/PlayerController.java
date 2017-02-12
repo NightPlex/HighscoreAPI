@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kuuasema.model.Game;
 import com.kuuasema.model.Player;
 import com.kuuasema.service.GameRepository;
-import com.kuuasema.service.GameService;
 import com.kuuasema.service.PlayerRepository;
 
 @RestController

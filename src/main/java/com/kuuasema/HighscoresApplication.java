@@ -1,9 +1,6 @@
 package com.kuuasema;
 
 import java.util.Random;
-import java.util.UUID;
-
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

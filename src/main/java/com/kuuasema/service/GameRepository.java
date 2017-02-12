@@ -2,8 +2,6 @@ package com.kuuasema.service;
 
 import java.util.Collection;
 
-import java.util.UUID;
-
 
 
 import org.springframework.data.repository.CrudRepository;
