@@ -30,7 +30,9 @@ Required any IDE that support Maven import.
 
 ## Deployment
 
-After tests and localhost test export the project as Jar.
+Run the tests and ensure that everything works
+<br/>
+Export the project as Jar.
 <br/>
 Publish the Jar in any platforum that support Java.
 <br/>
