@@ -31,10 +31,10 @@ public class RepositoryTest {
 	private PlayerRepository playerRepository;
 	
 	@Test
-	public void createNewGame() {
+	public void createAndDeleteNewGame() {
 		
 		//Add new player
-		Player player = new Player("test");
+		Player player = new Player("game");
 		
 		playerRepository.save(player);
 		assertThat(playerRepository.findByPlayerId(player.getPlayerId()));
@@ -43,7 +43,25 @@ public class RepositoryTest {
 		
 		Game game = new Game("angrybirds", 50, player);
 		gameRepository.save(game);
-		assertThat(gameRepository.findByPlayer(player)).isNotNull();	
+		assertThat(gameRepository.findByPlayer(player)).isNotNull();
+		
+		//delete from database
+		playerRepository.delete(player);
+		
+	}
+	
+	@Test
+	public void createAndDeletePlayer() {
+		
+		//Add new player
+		Player player = new Player("player");
+		
+		playerRepository.save(player);
+		assertThat(playerRepository.findByPlayerId(player.getPlayerId()));
+		
+		//delete player from database
+		playerRepository.delete(player);
+		assertThat(playerRepository.findByPlayerId(player.getPlayerId())).isNull();
 		
 	}
 

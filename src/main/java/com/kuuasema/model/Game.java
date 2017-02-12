@@ -1,8 +1,5 @@
 package com.kuuasema.model;
 
-import java.util.UUID;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 /*
  * Entity to hold game related data.
  * Holds data about all players on mutiple games
- * 
- * 
+
  * */
 
 
@@ -31,7 +27,7 @@ public class Game {
 	private Long id;
 
 	
-	@ManyToOne//
+	@ManyToOne
     @JoinColumn(name = "playerId")
     private Player player;
 

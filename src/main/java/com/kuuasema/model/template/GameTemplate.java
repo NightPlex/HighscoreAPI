@@ -3,7 +3,7 @@ package com.kuuasema.model.template;
 import java.util.UUID;
 
 /*
- * Template to get data from JSON responses
+ * Template to get game data from JSON responses
  * 
  * */
 

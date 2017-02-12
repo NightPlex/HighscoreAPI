@@ -3,6 +3,7 @@ package com.kuuasema;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +21,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.kuuasema.model.Player;
+import com.kuuasema.model.template.GameTemplate;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -78,6 +80,12 @@ public class PlayerControllerRestTests {
 		//format to proper string
 		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
 		
+		String GameJson = json(new GameTemplate("angry", 500, UUID.fromString(playerId)));
+		//submit score
+		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(GameJson))
+				.andExpect(status().isCreated());
+		
+		//Check if it gets deleted
 		mockMvc.perform(delete("/player/delete/" + playerId)).andExpect(status().isOk());
 	
 		
