@@ -1,4 +1,4 @@
-package com.kuuasema.model;
+package com.application.model;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,22 +13,21 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
 public class Player {
-	
+
 	@JsonIgnore
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
-	
-	//Not visible in GET requests
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	// Not visible in GET requests
 	@JsonIgnore
 	private UUID playerId;
-	
+
 	@Column(unique = true)
 	private String playerName;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "player")
 	private List<Game> scores;
 
@@ -58,20 +57,14 @@ public class Player {
 
 	public Player(String playerName) {
 		super();
-		
-		//Generate unique random playerId for each player.
+
+		// Generate unique random playerId for each player.
 		this.playerId = UUID.randomUUID();
 		this.playerName = playerName;
 	}
-	
-	
 
 	public Player() {
-		
+
 	}
-	
-	
-	
-	
 
 }

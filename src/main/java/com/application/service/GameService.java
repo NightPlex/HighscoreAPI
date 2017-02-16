@@ -1,10 +1,10 @@
-package com.kuuasema.service;
+package com.application.service;
 
 import java.util.Collection;
 
-import com.kuuasema.model.Game;
-import com.kuuasema.model.Player;
-import com.kuuasema.model.template.GameTemplate;
+import com.application.model.Game;
+import com.application.model.Player;
+import com.application.model.template.GameTemplate;
 
 /*
  * Interface for custom Game Service
@@ -14,12 +14,12 @@ import com.kuuasema.model.template.GameTemplate;
 public interface GameService {
 
 	Game addNewScoreToGame(String gameName, int score, Player player);
-	
+
 	Collection<Game> getTopScores(int amount, String gameTitle);
-	
+
 	Collection<Game> getScoresByName(String playerName);
-	
+
 	boolean validateSubmitScore(GameTemplate submitScore);
-	
+
 	Game updateScore(Game game, int newScore);
 }

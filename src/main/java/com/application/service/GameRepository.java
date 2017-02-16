@@ -1,13 +1,11 @@
-package com.kuuasema.service;
+package com.application.service;
 
 import java.util.Collection;
 
-
-
 import org.springframework.data.repository.CrudRepository;
 
-import com.kuuasema.model.Game;
-import com.kuuasema.model.Player;
+import com.application.model.Game;
+import com.application.model.Player;
 
 /*
  * 
@@ -17,14 +15,12 @@ import com.kuuasema.model.Player;
  * 
  * */
 
-
 public interface GameRepository extends CrudRepository<Game, Long> {
-	
+
 	Collection<Game> findByPlayer(Player player);
-	
+
 	Game findByPlayerAndGameTitle(Player player, String gameTitle);
-	
+
 	Collection<Game> findByGameTitle(String gameTitle);
-	
 
 }

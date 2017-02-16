@@ -30,9 +30,7 @@ Required any IDE that support Maven import.
 
 ## Deployment
 
-Run the tests and ensure that everything works
-<br/>
-Export the project as Jar.
+After tests and localhost test export the project as Jar.
 <br/>
 Publish the Jar in any platforum that support Java.
 <br/>
@@ -83,13 +81,13 @@ The reason for test is to ensure proper hibernation
 
 ## Brief API Documentation
 
-**POST** - */player/register*
+**POST** - */player*
 <br/>
 Register new account to database, receive unique playerId in return
 <br/>
 Example of usage: 
 ```
-http://example.com/player/register
+http://example.com/player
 
 JSON Body Content: 
 {
@@ -118,13 +116,13 @@ JSON RETURN CONTENT:
 ]
 ```
 
-**DELETE** - */player/delete/{playerId}*
+**DELETE** - */player/{playerId}*
 <br/>
 Deletes Player with all its scores.
 <br/>
 Example of usage: 
 ```
-http://example.com/player/delete/YOUR-PLAYER-ID
+http://example.com/player/YOUR-PLAYER-ID
 
 ```
 

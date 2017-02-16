@@ -29,7 +29,7 @@ $(document).ready(function() {
 					$("#delete-score").click(function(event) {
 						$.ajax({
 							type : 'DELETE',
-							url : "/player/delete/" + $("#deletePlayerId").val(),
+							url : "/player/" + $("#deletePlayerId").val(),
 							success : function(result) {
 								// Empty all boxes after click if all is done !!)
 								$("#playerTopScores").html("");

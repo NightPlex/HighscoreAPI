@@ -1,4 +1,4 @@
-package com.kuuasema;
+package com.application;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -20,10 +20,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
 
-
-import com.kuuasema.model.Player;
-import com.kuuasema.model.template.GameTemplate;
-import com.kuuasema.service.PlayerRepository;
+import com.application.HighscoresApplication;
+import com.application.model.Player;
+import com.application.model.template.GameTemplate;
+import com.application.service.PlayerRepository;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -39,7 +39,7 @@ public class GameControllerRestTests {
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf8"));
 
 	private MockMvc mockMvc;
-	
+
 	@Autowired
 	private PlayerRepository playerRepository;
 
@@ -66,74 +66,77 @@ public class GameControllerRestTests {
 
 	@Test
 	public void showTopScore() throws Exception {
-		MvcResult result = mockMvc.perform(post("/player/register").content(this.json(new Player("steven1"))).contentType(contentType)).andReturn();
-		//format to proper string
+		MvcResult result = mockMvc
+				.perform(post("/player").content(this.json(new Player("steven1"))).contentType(contentType))
+				.andReturn();
+		// format to proper string
 		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
 		String gameTitle = "angrybirds";
-		//set json
+		// set json
 		String GameJson = json(new GameTemplate(gameTitle, 500, UUID.fromString(playerId)));
-		//submit score
+		// submit score
 		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(GameJson))
 				.andExpect(status().isCreated());
-		
+
 		// by game title
-		this.mockMvc.perform(get("/game/topscore/"+ gameTitle +"/10")).andExpect(status().isOk());
-		
-		//by name
-		this.mockMvc.perform(get("/game/topscore/" + playerRepository.findByPlayerId(UUID.fromString(playerId)).getplayerName())).andExpect(status().isOk());
-		
-		
-		
+		this.mockMvc.perform(get("/game/topscore/" + gameTitle + "/10")).andExpect(status().isOk());
+
+		// by name
+		this.mockMvc
+				.perform(get(
+						"/game/topscore/" + playerRepository.findByPlayerId(UUID.fromString(playerId)).getplayerName()))
+				.andExpect(status().isOk());
+
 	}
-	
+
 	@Test
 	public void updateScore() throws Exception {
-		MvcResult result = mockMvc.perform(post("/player/register").content(this.json(new Player("steven2"))).contentType(contentType)).andReturn();
-		//format to proper string
+		MvcResult result = mockMvc
+				.perform(post("/player").content(this.json(new Player("steven2"))).contentType(contentType))
+				.andReturn();
+		// format to proper string
 		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
 		String gameTitle = "angrybirds";
-		//set json
+		// set json
 		String gameJson = json(new GameTemplate(gameTitle, 500, UUID.fromString(playerId)));
-		//submit score
+		// submit score
 		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(gameJson))
 				.andExpect(status().isCreated());
-		//update
-		
+		// update
+
 		String updatedGameJson = json(new GameTemplate(gameTitle, 800, UUID.fromString(playerId)));
-		
+
 		this.mockMvc.perform(put("/game/updatescore").contentType(contentType).content(updatedGameJson))
-		.andExpect(status().isCreated());
-		
-		
-		
-		
-		
+				.andExpect(status().isCreated());
+
 	}
 
 	@Test
 	public void deleteScore() throws Exception {
-		MvcResult result = mockMvc.perform(post("/player/register").content(this.json(new Player("steven3"))).contentType(contentType)).andReturn();
-		//format to proper string
+		MvcResult result = mockMvc
+				.perform(post("/player").content(this.json(new Player("steven3"))).contentType(contentType))
+				.andReturn();
+		// format to proper string
 		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
 		String gameTitle = "angrybirds";
-		//set json
+		// set json
 		String GameJson = json(new GameTemplate(gameTitle, 500, UUID.fromString(playerId)));
-		//submit score
+		// submit score
 		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(GameJson))
 				.andExpect(status().isCreated());
-		//delete score
+		// delete score
 		this.mockMvc.perform(delete("/game/delete/" + gameTitle + "/" + playerId)).andExpect(status().isOk());
-		
-		
-		
+
 	}
 
 	@Test
 	public void createNewScore() throws Exception {
-		MvcResult result = mockMvc.perform(post("/player/register").content(this.json(new Player("steven4"))).contentType(contentType)).andReturn();
-		//format to proper string
+		MvcResult result = mockMvc
+				.perform(post("/player").content(this.json(new Player("steven4"))).contentType(contentType))
+				.andReturn();
+		// format to proper string
 		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
-		
+
 		String GameJson = json(new GameTemplate("angrybirds", 500, UUID.fromString(playerId)));
 
 		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(GameJson))

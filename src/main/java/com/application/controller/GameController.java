@@ -1,4 +1,4 @@
-package com.kuuasema.controller;
+package com.application.controller;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kuuasema.model.Game;
-import com.kuuasema.model.Player;
-import com.kuuasema.model.template.GameTemplate;
-import com.kuuasema.service.GameRepository;
-import com.kuuasema.service.GameService;
-import com.kuuasema.service.PlayerRepository;
+import com.application.model.Game;
+import com.application.model.Player;
+import com.application.model.template.GameTemplate;
+import com.application.service.GameRepository;
+import com.application.service.GameService;
+import com.application.service.PlayerRepository;
 
 @RestController
 @RequestMapping("/game")
@@ -37,21 +37,21 @@ public class GameController {
 	@RequestMapping(value = "/submitscore", method = RequestMethod.POST)
 	public ResponseEntity<?> submitScoreToGamePost(@RequestBody GameTemplate submitScore) {
 
-		//Try to find if Player exists in the database
+		// Try to find if Player exists in the database
 		Player player = playerRepository.findByPlayerId(submitScore.getPlayerId());
-		
+
 		// Must pass validation
 		if (gameService.validateSubmitScore(submitScore)) {
-			
-			//if user exists save score to database and return game object
+
+			// if user exists save score to database and return game object
 			if (player != null) {
 				return new ResponseEntity<>(gameService.addNewScoreToGame(submitScore.getGameTitle(),
 						submitScore.getScore(), playerRepository.findByPlayerId(submitScore.getPlayerId())),
 						HttpStatus.CREATED);
 			} else {
-				
+
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-				
+
 			}
 
 		} else {
@@ -61,7 +61,7 @@ public class GameController {
 
 	}
 
-	//Update score in database with playerId and game Title
+	// Update score in database with playerId and game Title
 	@RequestMapping(value = "/updatescore", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateScoreByTitleAndId(@RequestBody GameTemplate updateScore) {
 
@@ -74,9 +74,8 @@ public class GameController {
 
 			// if exists update
 			if (game != null) {
-				
-				return new ResponseEntity<>(gameService.updateScore(game, updateScore.getScore()),
-						HttpStatus.CREATED);
+
+				return new ResponseEntity<>(gameService.updateScore(game, updateScore.getScore()), HttpStatus.CREATED);
 				// else not found
 			} else {
 
@@ -91,12 +90,12 @@ public class GameController {
 		}
 	}
 
-	//Delete a game score by title and player id
+	// Delete a game score by title and player id
 	@RequestMapping(value = "/delete/{gameTitle}/{playerId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteScoreByIdAndTitle(@PathVariable("gameTitle") String gameTitle,
 			@PathVariable("playerId") UUID playerId) {
 
-		//try to find
+		// try to find
 		Game game = gameRepository.findByPlayerAndGameTitle(playerRepository.findByPlayerId(playerId), gameTitle);
 
 		if (game == null) {

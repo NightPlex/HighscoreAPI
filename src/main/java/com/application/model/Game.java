@@ -1,4 +1,4 @@
-package com.kuuasema.model;
+package com.application.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,32 +9,29 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 /*
  * Entity to hold game related data.
  * Holds data about all players on mutiple games
 
  * */
 
-
 @Entity
 public class Game {
 
-	//Id for serializing
+	// Id for serializing
 	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	
 	@ManyToOne
-    @JoinColumn(name = "playerId")
-    private Player player;
+	@JoinColumn(name = "playerId")
+	private Player player;
 
-	//Name of the game
+	// Name of the game
 	private String gameTitle;
 
-	//Highest score
+	// Highest score
 	private int score;
 
 	public Long getId() {
@@ -44,8 +41,6 @@ public class Game {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
 
 	public Player getPlayer() {
 		return player;
@@ -84,8 +79,7 @@ public class Game {
 
 	@Override
 	public String toString() {
-		return "Game [id=" + id  + ", gameTitle=" + gameTitle +
-				", score=" + score + "player" + player + "]";
+		return "Game [id=" + id + ", gameTitle=" + gameTitle + ", score=" + score + "player" + player + "]";
 	}
 
 }
