@@ -81,7 +81,7 @@ public class PlayerControllerRestTests {
 		// format to proper string
 		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
 
-		String GameJson = json(new GameTemplate("angry", 500, UUID.fromString(playerId)));
+		String GameJson = json(new GameTemplate("angry", 500, playerId));
 		// submit score
 		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(GameJson))
 				.andExpect(status().isCreated());

@@ -13,7 +13,7 @@ import com.application.model.Player;
 
 public interface PlayerRepository extends CrudRepository<Player, Long> {
 
-	Player findByPlayerId(UUID playerId);
+	Player findByPlayerId(String string);
 
 	Player findByPlayerName(String playerName);
 

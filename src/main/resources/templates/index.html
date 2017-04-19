@@ -35,7 +35,8 @@
 			<div class="ui-grid-b ui-responsive">
 				<div class="ui-block-a">
 					<a href="#highscore" class="ui-btn ui-corner-all ui-shadow">All
-						games highscore</a><br /> <span>View top players in different games</span>
+						games highscore</a><br /> <span>View top players in different
+						games</span>
 
 				</div>
 
@@ -58,7 +59,15 @@
 			</div>
 			<br /> <br /> <br /> <br /> <br /> <br /> <br />
 			<div class="ui-grid-solo">
-				<div class="ui-block-a"></div>
+				<h1>Login</h1>
+				<br />
+				<form th:action ="@{/}" method="post">
+					<label for="username">Username:</label>
+					<input type="text" name="username" id="username" value="Your username here" />
+					<label for="password">Password:</label>
+					<input type="password" name="password" id="password" value="Your password here" />
+					<button type="submit" class="ui-btn ui-shadow">Login</button>
+				</form>
 			</div>
 		</div>
 
@@ -74,7 +83,8 @@
   -->
 	<div data-role="page" id="register">
 		<div data-role="header">
-			 <a href="/" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-left">Home</a>
+			<a href="/"
+				class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-left">Home</a>
 			<h1>Register account</h1>
 		</div>
 
@@ -101,7 +111,8 @@
   -->
 	<div data-role="page" id="highscore">
 		<div data-role="header">
-			<a href="/" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-left">Home</a>
+			<a href="/"
+				class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-left">Home</a>
 			<h1>Highscores</h1>
 		</div>
 
@@ -110,7 +121,9 @@
 				the highscore page!!</h3>
 			<div class="ui-grid-a ui-responsive">
 				<div class="ui-block-a">
-					<a href="#" class="ui-btn ui-btn-b" style="pointer-events: none; cursor: default;">Search game high score by game name</a>
+					<a href="#" class="ui-btn ui-btn-b"
+						style="pointer-events: none; cursor: default;">Search game
+						high score by game name</a>
 					<div class="ui-field-contain">
 						<label for="textinput-1">Game Title:</label> <input type="text"
 							name="textinput-1" id="gameTitle" placeholder="Enter game title"
@@ -147,7 +160,9 @@
 				</div>
 
 				<div class="ui-block-b">
-					<a href="#" class="ui-btn ui-btn-b" style="pointer-events: none; cursor: default;">Search a player by name</a>
+					<a href="#" class="ui-btn ui-btn-b"
+						style="pointer-events: none; cursor: default;">Search a player
+						by name</a>
 					<div class="ui-field-contain">
 						<label for="textinput-1">Player name:</label> <input type="text"
 							name="textinput-1" id="player-name"
@@ -190,15 +205,20 @@
 
 	<div data-role="page" id="handleAccount">
 		<div data-role="header">
-			<a href="/" class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-left">Home</a>
+			<a href="/"
+				class="ui-btn ui-btn-inline ui-icon-home ui-btn-icon-left">Home</a>
 			<h1>Manage account</h1>
 		</div>
 
 		<div data-role="main" class="ui-content">
-			<h3 class="text-center" style="text-align: center">Here you can add new, update or delete scores. Also view all your scores or even delete your account</h3>
+			<h3 class="text-center" style="text-align: center">Here you can
+				add new, update or delete scores. Also view all your scores or even
+				delete your account</h3>
 			<div class="ui-grid-b ui-responsive">
 				<div class="ui-block-a">
-					<a href="#" class="ui-btn ui-btn-b" style="pointer-events: none; cursor: default;">Add new score to database</a>
+					<a href="#" class="ui-btn ui-btn-b"
+						style="pointer-events: none; cursor: default;">Add new score
+						to database</a>
 					<div class="ui-field-contain">
 						<label for="textinput-1">Game Title:</label> <input type="text"
 							name="textinput-1" id="submitGameTitle"
@@ -220,11 +240,9 @@
 							class="ui-shadow ui-btn ui-corner-all">Submit</button>
 					</div>
 
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<a href="#" class="ui-btn ui-btn-b" style="pointer-events: none; cursor: default;">Update your score</a>
+					<br /> <br /> <br /> <br /> <a href="#" class="ui-btn ui-btn-b"
+						style="pointer-events: none; cursor: default;">Update your
+						score</a>
 					<div class="ui-field-contain">
 						<label for="textinput-1">Game Title:</label> <input type="text"
 							name="textinput-1" id="updateGameTitle"
@@ -249,7 +267,9 @@
 				</div>
 
 				<div class="ui-block-b">
-					<a href="#" class="ui-btn ui-btn-b" style="pointer-events: none; cursor: default;">Get all games in database with playerId</a>
+					<a href="#" class="ui-btn ui-btn-b"
+						style="pointer-events: none; cursor: default;">Get all games
+						in database with playerId</a>
 					<div class="ui-field-contain">
 						<label for="slider-1">Player id:</label> <input type="text"
 							name="textinput-1" id="getAllTopScores"
@@ -260,8 +280,8 @@
 						<button type="submit" id="get-scores"
 							class="ui-shadow ui-btn ui-corner-all">Submit</button>
 					</div>
-					
-					<br/>
+
+					<br />
 					<form>
 						<input id="filterTable-input" data-type="search" />
 					</form>
@@ -281,7 +301,9 @@
 					</table>
 				</div>
 				<div class="ui-block-c">
-				<a href="#" class="ui-btn ui-btn-b" style="pointer-events: none; cursor: default;">Remove specific game from database</a>
+					<a href="#" class="ui-btn ui-btn-b"
+						style="pointer-events: none; cursor: default;">Remove specific
+						game from database</a>
 					<div class="ui-field-contain">
 						<label for="textinput-1">Game Title:</label> <input type="text"
 							name="textinput-1" id="removeGameTitle"
@@ -298,11 +320,9 @@
 							class="ui-shadow ui-btn ui-corner-all">Remove</button>
 					</div>
 
-					<br/>
-					<br/>
-					<br/>
-					<br/>
-					<a href="#" class="ui-btn ui-btn-b" style="pointer-events: none; cursor: default;">Delete account and all its games</a>
+					<br /> <br /> <br /> <br /> <a href="#" class="ui-btn ui-btn-b"
+						style="pointer-events: none; cursor: default;">Delete account
+						and all its games</a>
 					<div class="ui-field-contain">
 						<label for="textinput-1">Player id:</label> <input type="text"
 							name="textinput-1" id="deletePlayerId"

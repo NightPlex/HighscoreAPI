@@ -11,21 +11,21 @@ public class GameTemplate {
 
 	private String gameTitle;
 	private int score;
-	private UUID playerId;
+	private String playerId;
 
 	@Override
 	public String toString() {
 		return "SubmitScore [gameTitle=" + gameTitle + ", score=" + score + ", playerId=" + playerId + "]";
 	}
 
-	public GameTemplate(String gameTitle, int score, UUID playerId) {
+	public GameTemplate(String gameTitle, int score, String playerId) {
 		super();
 		this.gameTitle = gameTitle;
 		this.score = score;
 		this.playerId = playerId;
 	}
 
-	public GameTemplate(int score, UUID playerId) {
+	public GameTemplate(int score, String playerId) {
 		super();
 		this.score = score;
 		this.playerId = playerId;
@@ -47,11 +47,11 @@ public class GameTemplate {
 		this.score = score;
 	}
 
-	public UUID getPlayerId() {
+	public String getPlayerId() {
 		return playerId;
 	}
 
-	public void setPlayerId(UUID playerId) {
+	public void setPlayerId(String playerId) {
 		this.playerId = playerId;
 	}
 

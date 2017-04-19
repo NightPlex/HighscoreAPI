@@ -23,7 +23,7 @@ public class Player {
 
 	// Not visible in GET requests
 	@JsonIgnore
-	private UUID playerId;
+	private String playerId;
 
 	@Column(unique = true)
 	private String playerName;
@@ -39,11 +39,11 @@ public class Player {
 		this.id = id;
 	}
 
-	public UUID getPlayerId() {
+	public String getPlayerId() {
 		return playerId;
 	}
 
-	public void setPlayerId(UUID playerId) {
+	public void setPlayerId(String playerId) {
 		this.playerId = playerId;
 	}
 
@@ -59,7 +59,7 @@ public class Player {
 		super();
 
 		// Generate unique random playerId for each player.
-		this.playerId = UUID.randomUUID();
+		this.playerId = UUID.randomUUID().toString();
 		this.playerName = playerName;
 	}
 

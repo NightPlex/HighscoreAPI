@@ -73,7 +73,7 @@ public class GameControllerRestTests {
 		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
 		String gameTitle = "angrybirds";
 		// set json
-		String GameJson = json(new GameTemplate(gameTitle, 500, UUID.fromString(playerId)));
+		String GameJson = json(new GameTemplate(gameTitle, 500, playerId));
 		// submit score
 		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(GameJson))
 				.andExpect(status().isCreated());
@@ -84,7 +84,7 @@ public class GameControllerRestTests {
 		// by name
 		this.mockMvc
 				.perform(get(
-						"/game/topscore/" + playerRepository.findByPlayerId(UUID.fromString(playerId)).getplayerName()))
+						"/game/topscore/" + playerRepository.findByPlayerId(playerId).getplayerName()))
 				.andExpect(status().isOk());
 
 	}
@@ -98,13 +98,13 @@ public class GameControllerRestTests {
 		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
 		String gameTitle = "angrybirds";
 		// set json
-		String gameJson = json(new GameTemplate(gameTitle, 500, UUID.fromString(playerId)));
+		String gameJson = json(new GameTemplate(gameTitle, 500, playerId));
 		// submit score
 		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(gameJson))
 				.andExpect(status().isCreated());
 		// update
 
-		String updatedGameJson = json(new GameTemplate(gameTitle, 800, UUID.fromString(playerId)));
+		String updatedGameJson = json(new GameTemplate(gameTitle, 800, playerId));
 
 		this.mockMvc.perform(put("/game/updatescore").contentType(contentType).content(updatedGameJson))
 				.andExpect(status().isCreated());
@@ -120,7 +120,7 @@ public class GameControllerRestTests {
 		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
 		String gameTitle = "angrybirds";
 		// set json
-		String GameJson = json(new GameTemplate(gameTitle, 500, UUID.fromString(playerId)));
+		String GameJson = json(new GameTemplate(gameTitle, 500, playerId));
 		// submit score
 		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(GameJson))
 				.andExpect(status().isCreated());
@@ -137,7 +137,7 @@ public class GameControllerRestTests {
 		// format to proper string
 		String playerId = result.getResponse().getContentAsString().replaceAll("\"", "");
 
-		String GameJson = json(new GameTemplate("angrybirds", 500, UUID.fromString(playerId)));
+		String GameJson = json(new GameTemplate("angrybirds", 500, playerId));
 
 		this.mockMvc.perform(post("/game/submitscore").contentType(contentType).content(GameJson))
 				.andExpect(status().isCreated());

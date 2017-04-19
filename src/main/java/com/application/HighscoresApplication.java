@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Bean;
 
 import com.application.model.Game;
 import com.application.model.Player;
+import com.application.model.User;
 import com.application.service.GameRepository;
 import com.application.service.PlayerRepository;
+import com.application.service.UserRepository;
 
 @SpringBootApplication
 public class HighscoresApplication {
@@ -20,8 +22,12 @@ public class HighscoresApplication {
 
 	// Generate data at application start
 	@Bean
-	public CommandLineRunner studentDemo(GameRepository gameRepository, PlayerRepository playerRepository) {
+	public CommandLineRunner studentDemo(GameRepository gameRepository, PlayerRepository playerRepository, UserRepository userRepo) {
 		return (args) -> {
+			
+			User user = new User("ADMIN", "admin", "nimda", "tere@tere.com");
+			userRepo.save(user);
+			
 			Random rand = new Random();
 
 			Player player1 = new Player("Peter");

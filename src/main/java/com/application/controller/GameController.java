@@ -93,7 +93,7 @@ public class GameController {
 	// Delete a game score by title and player id
 	@RequestMapping(value = "/delete/{gameTitle}/{playerId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteScoreByIdAndTitle(@PathVariable("gameTitle") String gameTitle,
-			@PathVariable("playerId") UUID playerId) {
+			@PathVariable("playerId") String playerId) {
 
 		// try to find
 		Game game = gameRepository.findByPlayerAndGameTitle(playerRepository.findByPlayerId(playerId), gameTitle);

@@ -49,7 +49,7 @@ public class PlayerController {
 
 	// Request all scores submitted by player
 	@RequestMapping(path = "/{playerId}", method = RequestMethod.GET)
-	public ResponseEntity<?> findByplayerId(@PathVariable("playerId") UUID playerId) {
+	public ResponseEntity<?> findByplayerId(@PathVariable("playerId") String playerId) {
 
 		// Try to fetch games
 		Collection<Game> games = gameRepository.findByPlayer(playerRepository.findByPlayerId(playerId));
@@ -67,7 +67,7 @@ public class PlayerController {
 
 	// Delete player and all its games by id
 	@RequestMapping(path = "/{playerId}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deleteByplayerId(@PathVariable("playerId") UUID playerId) {
+	public ResponseEntity<?> deleteByplayerId(@PathVariable("playerId") String playerId) {
 
 		// Try to find
 		Player player = playerRepository.findByPlayerId(playerId);
