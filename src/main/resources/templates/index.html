@@ -58,17 +58,7 @@
 				</div>
 			</div>
 			<br /> <br /> <br /> <br /> <br /> <br /> <br />
-			<div class="ui-grid-solo">
-				<h1>Login</h1>
-				<br />
-				<form th:action ="@{/}" method="post">
-					<label for="username">Username:</label>
-					<input type="text" name="username" id="username" value="Your username here" />
-					<label for="password">Password:</label>
-					<input type="password" name="password" id="password" value="Your password here" />
-					<button type="submit" class="ui-btn ui-shadow">Login</button>
-				</form>
-			</div>
+	
 		</div>
 
 		<div data-role="footer">
@@ -92,7 +82,7 @@
 			<h3 class="text-center" style="text-align: center">Enter your
 				ingame name and in return you will get unique player ID!</h3>
 			<label for="text-basic">You name in game: </label> <input type="text"
-				name="registerPlayer" id="registerPlayer" value="" />
+				name="registerPlayer" id="returnedPlayer" value="" />
 			<button class="ui-btn ui-btn-inline" id="registerButton">Register!</button>
 			<label id="registerLabel" for="text-basic" style="display: none">Your
 				unique user ID is: <input type="text" name="country" value="test"

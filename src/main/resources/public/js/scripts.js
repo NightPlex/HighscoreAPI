@@ -117,7 +117,7 @@ $(document).ready(function() {
 										$.ajax({
 											type : 'POST',
 											contentType : 'application/json',
-											url : "/player/register",
+											url : "/player",
 											dataType : "json",
 											data : JSON.stringify({"playerName" : $("#registerPlayer").val()}), // player name
 											success : function(data,textStatus, jqXHR) {
@@ -131,102 +131,13 @@ $(document).ready(function() {
 											},
 
 											error : function(jqXHR,textStatus,errorThrown) {
+												alert(errorThrown);
 												alert('Username not atleast 1 character or already exists');
 												$("#registerPlayer").val("");
 											}
 										});
 
 					});
-					
-					//Find all player scores by player id
-					function findByPlayerId(playerId) {
-						$.ajax({
-							type : 'GET',
-							url : '/player/'
-							+ playerId,
-							dataType : "json",
-							success : function(data) {
-								$("#getAllTopScores").val("");
-								$("#playerTopScores").html("");
-								for (var i = 0; i < data.length; i++) {
-
-									$("#playerTopScores").append(
-										'<tr><th>'
-										+ data[i].gameTitle
-										+ '</th><td>'
-										+ data[i].score
-										+ '</td><td>'
-										+ data[i].player.playerName
-										+ '</td></tr>');
-
-								}
-
-							},
-							error : function(jqXHR, textStatus,
-								errorThrown) {
-								alert('Player not found or no scores in highscore');
-								$("#getAllTopScores").val("");
-							}
-						});
-					}
-
-
-					// Get all games by player name
-					function findByPlayerName(playerName) {
-						$.ajax({
-							type : 'GET',
-							url : '/game/topscore/' + playerName,
-							dataType : "json",
-							success : function(data) {
-								// Empty before next query
-								$("#playerHighscore").html("");
-								for (var i = 0; i < data.length; i++) {
-
-									$("#playerHighscore").append(
-										'<tr><th>' + (i + 1) + '</th><td>'
-										+ data[i].player.playerName
-										+ '</td><td>'
-										+ data[i].score
-										+ '</td><td>'
-										+ data[i].gameTitle
-										+ '</td></tr>');
-
-								}
-							},
-							error : function(jqXHR, textStatus, errorThrown) {
-								alert('Player not found');
-							}
-						});
-					}
-
-					// get all games by game name and amount
-
-					function findByGameName(gameName, amount) {
-						$.ajax({
-							type : 'GET',
-							url : '/game/topscore/' + gameName + '/' + amount,
-							dataType : "json",
-							success : function(data) {
-								// Empty before next query
-								$("#highscorePage").html("");
-								for (var i = 0; i < data.length; i++) {
-
-									$("#highscorePage").append(
-										'<tr><th>' + (i + 1) + '</th><td>'
-										+ data[i].player.playerName
-										+ '</td><td>'
-										+ data[i].score
-										+ '</td><td>'
-										+ data[i].gameTitle
-										+ '</td></tr>');
-
-								}
-							},
-							error : function(jqXHR, textStatus, errorThrown) {
-								alert('Game title not found ad');
-							}
-						});
-					}
 
 					// onclick for buttons
 					$("#get-scores").click(function(event) {
@@ -244,8 +155,185 @@ $(document).ready(function() {
 					$("#get-player-highscore").click(function(event) {
 						findByPlayerName($("#player-name").val());
 					});
-
+					$("#get-player-highscore-admin").click(function(event) {
+						findAllGamesPlayer($("#player-name-admin").val());
+					});
+					$("#get-player-id-admin").click(function(event) {
+						findUserIdByName($("#player-name-admin-id").val());
+					});
+					
+					
 				});
+
+//Start of regular functions for regular customers.
+//Find all player scores by player id
+function findByPlayerId(playerId) {
+	$.ajax({
+		type : 'GET',
+		url : '/player/'
+		+ playerId,
+		dataType : "json",
+		success : function(data) {
+			$("#getAllTopScores").val("");
+			$("#playerTopScores").html("");
+			for (var i = 0; i < data.length; i++) {
+
+				$("#playerTopScores").append(
+					'<tr><th>'
+					+ data[i].gameTitle
+					+ '</th><td>'
+					+ data[i].score
+					+ '</td><td>'
+					+ data[i].player.playerName
+					+ '</td></tr>');
+
+			}
+
+		},
+		error : function(jqXHR, textStatus,
+			errorThrown) {
+			alert('Player not found or no scores in highscore');
+			$("#getAllTopScores").val("");
+		}
+	});
+}
+
+
+// Get all games by player name
+function findByPlayerName(playerName) {
+	$.ajax({
+		type : 'GET',
+		url : '/game/topscore/' + playerName,
+		dataType : "json",
+		success : function(data) {
+			// Empty before next query
+			$("#playerHighscore").html("");
+			for (var i = 0; i < data.length; i++) {
+
+				$("#playerHighscore").append(
+					'<tr><th>' + (i + 1) + '</th><td>'
+					+ data[i].player.playerName
+					+ '</td><td>'
+					+ data[i].score
+					+ '</td><td>'
+					+ data[i].gameTitle
+					+ '</td></tr>');
+
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('Player not found');
+		}
+	});
+}
+
+
+
+// get all games by game name and amount
+
+function findByGameName(gameName, amount) {
+	$.ajax({
+		type : 'GET',
+		url : '/game/topscore/' + gameName + '/' + amount,
+		dataType : "json",
+		success : function(data) {
+			// Empty before next query
+			$("#highscorePage").html("");
+			for (var i = 0; i < data.length; i++) {
+
+				$("#highscorePage").append(
+					'<tr><th>' + (i + 1) + '</th><td>'
+					+ data[i].player.playerName
+					+ '</td><td>'
+					+ data[i].score
+					+ '</td><td>'
+					+ data[i].gameTitle
+					+ '</td></tr>');
+
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('Game title not found');
+		}
+	});
+}
+
+
+
+
+
+//Start of admin calls:
+
+//Get all games by player name
+function findAllGamesPlayer(playerName) {
+	$.ajax({
+		type : 'GET',
+		url : '/game/topscore/' + playerName,
+		dataType : "json",
+		success : function(data) {
+			// Empty before next query
+			$("#playerHighscore").html("");
+			for (var i = 0; i < data.length; i++) {
+
+				$("#playerHighscore").append(
+					'<tr><th>' + (i + 1) + '</th><td>'
+					+ data[i].player.playerName
+					+ '</td><td>'
+					+ data[i].score
+					+ '</td><td>'
+					+ data[i].gameTitle
+					+ '</td><td>'
+					+ '<button onclick="deleteGameById('
+					+ data[i].id
+					+');">DELETE</button>'
+					+ '</td></tr>');
+
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('Player not found');
+		}
+	});
+}
+
+function deleteGameById(gameId) {
+	$.ajax({
+		type : 'DELETE',
+		url : '/admin/api/' + gameId,
+		success : function(data) {
+			alert("Successfully deleted");
+			// Empty before next query
+			$("#playerHighscore").html("");
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('Player not found');
+		}
+	});
+}
+
+function findUserIdByName(playerName) {
+	$.ajax({
+		type : 'GET',
+		url : '/admin/api/' + playerName,
+		dataType : "json",
+		success : function(data) {
+			
+			alert('Fetched successfully');
+
+			$("#returnedPlayer").val("");
+
+			$("#userIdLabel").show();
+
+			$("#userIdInputText").attr('value', data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('Player not found');
+		}
+	});
+}
+
+
+
 
 // Scaling code for footer to stay down..
 $(document).on(

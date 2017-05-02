@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Game {
 
 	// Id for serializing
-	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

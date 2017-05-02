@@ -1,7 +1,6 @@
 package com.application.controller;
 
 import java.util.Collection;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,9 +38,10 @@ public class PlayerController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
 		} else {
+			String jsonResponse = playerRepository.save(new Player(player.getplayerName())).getPlayerId();
 			// Save name and userId to database and return HTTP CREATED and
 			// return UUID to user
-			return new ResponseEntity<>(playerRepository.save(new Player(player.getplayerName())).getPlayerId(),
+			return new ResponseEntity<>('"'+jsonResponse+'"',
 					HttpStatus.CREATED);
 		}
 

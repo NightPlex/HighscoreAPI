@@ -18,11 +18,13 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ADMIN')")
+		http.authorizeRequests()
+		.antMatchers("/admin**").authenticated()
+		
 		.and()
 		.formLogin()
-			.loginPage("/")
-			.successForwardUrl("/admin")
+			.loginPage("/admin/login")
+			.defaultSuccessUrl("/admin")
 			.permitAll()
 		
 		
